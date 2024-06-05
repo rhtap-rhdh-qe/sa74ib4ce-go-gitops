@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sa74ib4ce-go-development
+  namespace: rhtap
+  finalizers: ["resources-finalizer.argocd.argoproj.io"] 
+spec:
+  project: default
+  source:
+    path: ./components/sa74ib4ce-go/overlays/development
+    repoURL: https://github.com/rhtap-rhdh-qe/sa74ib4ce-go-gitops.git
+    targetRevision: main
+  destination:
+    namespace: rhtap-app-development
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    managedNamespaceMetadata:
+      labels: 
+        argocd.argoproj.io/managed-by: rhtap
+    automated: 
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - PruneLast=true

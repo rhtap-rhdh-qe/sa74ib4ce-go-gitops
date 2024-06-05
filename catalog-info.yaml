@@ -1,0 +1,21 @@
+apiVersion: backstage.io/v1alpha1
+kind: Resource
+metadata:
+  name: sa74ib4ce-go-gitops
+  description: This is GitOps manifest for sa74ib4ce-go   
+  links:
+    - url: https://www.redhat.com/en/solutions/trusted-software-supply-chain
+      title: Trusted Secure Supply Chain 
+      icon: dashboard
+      type: admin-dashboard
+  annotations:    
+    argocd/app-name: sa74ib4ce-go
+    janus-idp.io/tekton: sa74ib4ce-go 
+    backstage.io/kubernetes-id: sa74ib4ce-go 
+    backstage.io/techdocs-ref: dir:. 
+spec:
+  type: gitops
+  owner: user:guest 
+  lifecycle: experimental
+  dependsOn:
+    - component:sa74ib4ce-go
